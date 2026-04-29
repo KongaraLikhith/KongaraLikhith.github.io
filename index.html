@@ -1,0 +1,721 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Likhith Kongara | IT Business Analyst</title>
+    <style>
+        :root {
+            --bg: #0a0a0a;
+            --surface: #141414;
+            --surface2: #1a1a1a;
+            --text: #e0e0e0;
+            --textMuted: #909090;
+            --accent: #64ffda;
+            --accentDim: rgba(100, 255, 218, 0.08);
+            --border: rgba(255, 255, 255, 0.06);
+            --radius: 16px;
+            --radiusSm: 10px;
+            --maxWidth: 1100px;
+            --transition: 0.35s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Inter', 'Segoe UI', system-ui, -apple-system, sans-serif;
+            background: var(--bg);
+            color: var(--text);
+            line-height: 1.6;
+            overflow-x: hidden;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        /* Background subtle grid */
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 0;
+            background:
+                radial-gradient(ellipse at 20% 20%, rgba(100, 255, 218, 0.03) 0%, transparent 50%),
+                radial-gradient(ellipse at 80% 60%, rgba(100, 255, 218, 0.02) 0%, transparent 50%),
+                radial-gradient(ellipse at 50% 80%, rgba(100, 255, 218, 0.02) 0%, transparent 50%);
+        }
+
+        .container {
+            max-width: var(--maxWidth);
+            margin: 0 auto;
+            padding: 0 28px;
+            position: relative;
+            z-index: 1;
+        }
+
+        /* ---- REVEAL ANIMATIONS ---- */
+        .reveal {
+            opacity: 0;
+            transform: translateY(42px);
+            transition: opacity 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94), transform 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        }
+        .reveal.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .reveal-delay-1 {
+            transition-delay: 0.1s;
+        }
+        .reveal-delay-2 {
+            transition-delay: 0.2s;
+        }
+        .reveal-delay-3 {
+            transition-delay: 0.3s;
+        }
+        .reveal-delay-4 {
+            transition-delay: 0.4s;
+        }
+        .reveal-delay-5 {
+            transition-delay: 0.5s;
+        }
+
+        /* ---- HEADER ---- */
+        .site-header {
+            padding: 20px 0;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            background: rgba(10, 10, 10, 0.78);
+            backdrop-filter: blur(18px);
+            -webkit-backdrop-filter: blur(18px);
+            border-bottom: 1px solid var(--border);
+            transition: background var(--transition), border-color var(--transition);
+        }
+        .site-header .container {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+        .logo {
+            font-weight: 700;
+            font-size: 1.25rem;
+            letter-spacing: -0.01em;
+            color: var(--text);
+            text-decoration: none;
+            transition: color var(--transition);
+        }
+        .logo:hover {
+            color: var(--accent);
+        }
+        .status-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: var(--surface2);
+            border: 1px solid var(--border);
+            padding: 8px 16px;
+            border-radius: 999px;
+            font-size: 0.85rem;
+            font-weight: 500;
+            letter-spacing: -0.01em;
+            transition: all var(--transition);
+            cursor: default;
+        }
+        .status-dot {
+            width: 9px;
+            height: 9px;
+            border-radius: 50%;
+            background: #4ade80;
+            box-shadow: 0 0 10px rgba(74, 222, 128, 0.5);
+            animation: pulse-dot 2s infinite;
+        }
+        @keyframes pulse-dot {
+            0%,
+            100% {
+                box-shadow: 0 0 8px rgba(74, 222, 128, 0.4);
+            }
+            50% {
+                box-shadow: 0 0 18px rgba(74, 222, 128, 0.8);
+            }
+        }
+
+        /* ---- HERO ---- */
+        .hero {
+            padding: 100px 0 60px;
+            text-align: left;
+        }
+        .hero-eyebrow {
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 0.16em;
+            color: var(--accent);
+            margin-bottom: 18px;
+            font-weight: 600;
+        }
+        .hero h1 {
+            font-size: clamp(3rem, 7vw, 5.2rem);
+            font-weight: 800;
+            letter-spacing: -0.03em;
+            line-height: 1.06;
+            margin-bottom: 22px;
+            color: #ffffff;
+        }
+        .hero h1 .accent-underline {
+            background: linear-gradient(180deg, transparent 62%, var(--accentDim) 62%);
+            padding: 0 6px;
+        }
+        .hero-tagline {
+            font-size: clamp(1.1rem, 2.4vw, 1.35rem);
+            color: var(--textMuted);
+            max-width: 620px;
+            line-height: 1.6;
+            margin-bottom: 34px;
+        }
+        .hero-contact-row {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px 36px;
+            font-size: 0.95rem;
+            color: var(--textMuted);
+        }
+        .hero-contact-row span {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            transition: color var(--transition);
+            cursor: default;
+        }
+        .hero-contact-row a {
+            color: var(--textMuted);
+            text-decoration: none;
+            transition: color var(--transition);
+        }
+        .hero-contact-row a:hover {
+            color: var(--accent);
+        }
+
+        /* ---- STATS ---- */
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 18px;
+            margin: 54px 0 70px;
+        }
+        .stat-card {
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: var(--radiusSm);
+            padding: 26px 22px;
+            text-align: center;
+            transition: all var(--transition);
+            cursor: default;
+            position: relative;
+            overflow: hidden;
+        }
+        .stat-card::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: radial-gradient(circle at 50% 120%, rgba(100, 255, 218, 0.06) 0%, transparent 60%);
+            opacity: 0;
+            transition: opacity var(--transition);
+        }
+        .stat-card:hover {
+            border-color: rgba(100, 255, 218, 0.25);
+            transform: translateY(-4px);
+            box-shadow: 0 16px 38px rgba(0, 0, 0, 0.5);
+        }
+        .stat-card:hover::after {
+            opacity: 1;
+        }
+        .stat-number {
+            font-size: 2.6rem;
+            font-weight: 800;
+            letter-spacing: -0.02em;
+            color: var(--accent);
+            display: block;
+            position: relative;
+            z-index: 1;
+        }
+        .stat-label {
+            font-size: 0.85rem;
+            color: var(--textMuted);
+            margin-top: 4px;
+            position: relative;
+            z-index: 1;
+            letter-spacing: -0.01em;
+        }
+
+        /* ---- SECTION ---- */
+        .section {
+            padding: 60px 0;
+            border-top: 1px solid var(--border);
+        }
+        .section-number {
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            letter-spacing: 0.2em;
+            color: var(--accent);
+            margin-bottom: 8px;
+            font-weight: 700;
+        }
+        .section-title {
+            font-size: 2rem;
+            font-weight: 700;
+            letter-spacing: -0.02em;
+            margin-bottom: 34px;
+            color: #ffffff;
+        }
+
+        /* ---- SKILL TAGS ---- */
+        .skills-cloud {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+        }
+        .skill-tag {
+            background: var(--surface);
+            border: 1px solid var(--border);
+            padding: 10px 18px;
+            border-radius: 999px;
+            font-size: 0.9rem;
+            letter-spacing: -0.01em;
+            transition: all var(--transition);
+            cursor: default;
+            color: var(--textMuted);
+        }
+        .skill-tag:hover {
+            border-color: var(--accent);
+            color: var(--accent);
+            background: var(--accentDim);
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.4);
+        }
+
+        /* ---- EXPERIENCE TIMELINE ---- */
+        .timeline {
+            display: flex;
+            flex-direction: column;
+            gap: 24px;
+        }
+        .timeline-item {
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: var(--radiusSm);
+            padding: 24px 28px;
+            transition: all var(--transition);
+            cursor: default;
+            position: relative;
+            overflow: hidden;
+        }
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: 3px;
+            height: 100%;
+            background: var(--accent);
+            opacity: 0;
+            transition: opacity var(--transition);
+            border-radius: 0 4px 4px 0;
+        }
+        .timeline-item:hover {
+            border-color: rgba(100, 255, 218, 0.25);
+            transform: translateX(6px);
+            box-shadow: 0 12px 32px rgba(0, 0, 0, 0.5);
+        }
+        .timeline-item:hover::before {
+            opacity: 1;
+        }
+        .timeline-role {
+            font-weight: 700;
+            font-size: 1.1rem;
+            color: #ffffff;
+            letter-spacing: -0.01em;
+        }
+        .timeline-company {
+            font-size: 0.9rem;
+            color: var(--accent);
+            margin-bottom: 4px;
+        }
+        .timeline-date {
+            font-size: 0.8rem;
+            color: var(--textMuted);
+            letter-spacing: 0.02em;
+        }
+
+        /* ---- EDUCATION ---- */
+        .edu-cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 18px;
+        }
+        .edu-card {
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: var(--radiusSm);
+            padding: 24px 28px;
+            transition: all var(--transition);
+            cursor: default;
+        }
+        .edu-card:hover {
+            border-color: rgba(100, 255, 218, 0.25);
+            transform: translateY(-4px);
+            box-shadow: 0 16px 32px rgba(0, 0, 0, 0.5);
+        }
+        .edu-degree {
+            font-weight: 700;
+            font-size: 1.1rem;
+            color: #ffffff;
+        }
+        .edu-field {
+            color: var(--accent);
+            font-size: 0.9rem;
+            margin-bottom: 6px;
+        }
+        .edu-school {
+            color: var(--textMuted);
+            font-size: 0.9rem;
+        }
+        .edu-years {
+            font-size: 0.8rem;
+            color: var(--textMuted);
+            letter-spacing: 0.02em;
+        }
+
+        /* ---- CONTACT ---- */
+        .contact-card {
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+            padding: 40px 32px;
+            text-align: center;
+            transition: all var(--transition);
+        }
+        .contact-card:hover {
+            border-color: rgba(100, 255, 218, 0.25);
+            box-shadow: 0 20px 44px rgba(0, 0, 0, 0.5);
+        }
+        .contact-card p {
+            font-size: 1.2rem;
+            color: var(--textMuted);
+            margin-bottom: 24px;
+            letter-spacing: -0.01em;
+        }
+        .contact-links {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 16px;
+        }
+        .contact-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: var(--surface2);
+            border: 1px solid var(--border);
+            color: var(--text);
+            padding: 12px 22px;
+            border-radius: 999px;
+            text-decoration: none;
+            font-size: 0.9rem;
+            font-weight: 500;
+            letter-spacing: -0.01em;
+            transition: all var(--transition);
+        }
+        .contact-btn:hover {
+            border-color: var(--accent);
+            color: var(--accent);
+            background: var(--accentDim);
+            transform: translateY(-3px);
+            box-shadow: 0 10px 24px rgba(0, 0, 0, 0.5);
+        }
+
+        /* ---- FOOTER ---- */
+        .site-footer {
+            padding: 32px 0;
+            text-align: center;
+            font-size: 0.8rem;
+            color: var(--textMuted);
+            border-top: 1px solid var(--border);
+            letter-spacing: 0.02em;
+        }
+
+        /* ---- RESPONSIVE ---- */
+        @media (max-width: 768px) {
+            .hero {
+                padding: 70px 0 40px;
+            }
+            .hero h1 {
+                font-size: 2.6rem;
+            }
+            .stats-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 12px;
+            }
+            .stat-number {
+                font-size: 2rem;
+            }
+            .section {
+                padding: 44px 0;
+            }
+            .section-title {
+                font-size: 1.5rem;
+            }
+        }
+        @media (max-width: 480px) {
+            .stats-grid {
+                grid-template-columns: 1fr 1fr;
+                gap: 10px;
+            }
+            .stat-card {
+                padding: 18px 12px;
+            }
+            .stat-number {
+                font-size: 1.6rem;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- HEADER -->
+    <header class="site-header">
+        <div class="container">
+            <a href="#" class="logo">LK</a>
+            <div class="status-badge">
+                <span class="status-dot"></span> Open to Work
+            </div>
+        </div>
+    </header>
+
+    <main class="container">
+
+        <!-- HERO -->
+        <section class="hero reveal">
+            <p class="hero-eyebrow">IT Business Analyst</p>
+            <h1>Likhith <span class="accent-underline">Kongara</span></h1>
+            <p class="hero-tagline">Bridging business needs and technology solutions through data, systems, and process analysis.</p>
+            <div class="hero-contact-row">
+                <span>📍 Austin, TX (Open to Relocation)</span>
+                <span>📞 +1 716-465-8849</span>
+                <a href="mailto:likhithkongara1715@gmail.com">✉️ likhithkongara1715@gmail.com</a>
+            </div>
+        </section>
+
+        <!-- STATS -->
+        <div class="stats-grid reveal reveal-delay-1">
+            <div class="stat-card">
+                <span class="stat-number" data-count="3">0</span>
+                <span class="stat-label">Years Experience</span>
+            </div>
+            <div class="stat-card">
+                <span class="stat-number" data-count="12">0</span>
+                <span class="stat-label">Projects Delivered</span>
+            </div>
+            <div class="stat-card">
+                <span class="stat-number" data-count="8">0</span>
+                <span class="stat-label">Tools Mastered</span>
+            </div>
+            <div class="stat-card">
+                <span class="stat-number" data-count="4">0</span>
+                <span class="stat-label">Certifications</span>
+            </div>
+        </div>
+
+        <!-- TECHNICAL SKILLS -->
+        <section class="section reveal" id="skills">
+            <p class="section-number">01</p>
+            <h2 class="section-title">Technical Skills</h2>
+            <div class="skills-cloud">
+                <span class="skill-tag">Requirements Gathering</span>
+                <span class="skill-tag">Map & Gap Analysis</span>
+                <span class="skill-tag">Process Mapping</span>
+                <span class="skill-tag">End-to-End Testing</span>
+                <span class="skill-tag">ERP Analysis</span>
+                <span class="skill-tag">SAP IDocs</span>
+                <span class="skill-tag">OpenText Contivo</span>
+                <span class="skill-tag">Sterling B2B</span>
+                <span class="skill-tag">Python</span>
+                <span class="skill-tag">SQL</span>
+                <span class="skill-tag">REST APIs</span>
+                <span class="skill-tag">FastAPI</span>
+                <span class="skill-tag">AWS (Lambda, S3, RDS)</span>
+                <span class="skill-tag">Excel (VLOOKUP, Pivot Tables)</span>
+                <span class="skill-tag">Power BI</span>
+                <span class="skill-tag">Streamlit</span>
+                <span class="skill-tag">Snowflake</span>
+                <span class="skill-tag">Postman</span>
+                <span class="skill-tag">Agile / SDLC</span>
+                <span class="skill-tag">Stakeholder Communication</span>
+            </div>
+        </section>
+
+        <!-- EXPERIENCE -->
+        <section class="section reveal" id="experience">
+            <p class="section-number">02</p>
+            <h2 class="section-title">Experience</h2>
+            <div class="timeline">
+                <div class="timeline-item reveal reveal-delay-1">
+                    <p class="timeline-role">Software Engineer — B2B / EDI Analyst</p>
+                    <p class="timeline-company">OpenText</p>
+                    <p class="timeline-date">Jan 2023 – Jan 2024</p>
+                </div>
+                <div class="timeline-item reveal reveal-delay-2">
+                    <p class="timeline-role">Data Analyst (Volunteer)</p>
+                    <p class="timeline-company">Community Dreams Foundation</p>
+                    <p class="timeline-date">Sep 2025 – Present</p>
+                </div>
+                <div class="timeline-item reveal reveal-delay-3">
+                    <p class="timeline-role">UI Developer</p>
+                    <p class="timeline-company">Reliance Jio Infocomm Limited</p>
+                    <p class="timeline-date">Aug 2022 – Dec 2022</p>
+                </div>
+                <div class="timeline-item reveal reveal-delay-4">
+                    <p class="timeline-role">AWS Engineer (Intern)</p>
+                    <p class="timeline-company">AICTE</p>
+                    <p class="timeline-date">Oct 2021 – Dec 2021</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- DOMAIN EXPERTISE -->
+        <section class="section reveal" id="expertise">
+            <p class="section-number">03</p>
+            <h2 class="section-title">Domain Expertise</h2>
+            <div class="skills-cloud">
+                <span class="skill-tag">Business Analysis</span>
+                <span class="skill-tag">ERP Integrations</span>
+                <span class="skill-tag">EDI / B2B Systems</span>
+                <span class="skill-tag">Data Flow Analysis</span>
+                <span class="skill-tag">Functional Specifications</span>
+                <span class="skill-tag">SOP Development</span>
+                <span class="skill-tag">Cross-functional Reporting</span>
+                <span class="skill-tag">Dashboard Prototyping</span>
+                <span class="skill-tag">Cloud Deployments</span>
+                <span class="skill-tag">API Design & Testing</span>
+                <span class="skill-tag">Continuous Improvement</span>
+                <span class="skill-tag">Customer-Centric Delivery</span>
+            </div>
+        </section>
+
+        <!-- EDUCATION -->
+        <section class="section reveal" id="education">
+            <p class="section-number">04</p>
+            <h2 class="section-title">Education</h2>
+            <div class="edu-cards">
+                <div class="edu-card reveal reveal-delay-1">
+                    <p class="edu-degree">Master of Science</p>
+                    <p class="edu-field">Computer Science</p>
+                    <p class="edu-school">University at Buffalo (SUNY)</p>
+                    <p class="edu-years">2023 – 2025</p>
+                </div>
+                <div class="edu-card reveal reveal-delay-2">
+                    <p class="edu-degree">Bachelor of Technology</p>
+                    <p class="edu-field">Computer Science</p>
+                    <p class="edu-school">KL University, Hyderabad</p>
+                    <p class="edu-years">2019 – 2023</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- CONTACT -->
+        <section class="section reveal" id="contact">
+            <p class="section-number">05</p>
+            <h2 class="section-title">Contact</h2>
+            <div class="contact-card">
+                <p>Let's turn your data into decisions that move the needle.</p>
+                <div class="contact-links">
+                    <a href="mailto:likhithkongara1715@gmail.com" class="contact-btn">✉️ Email</a>
+                    <a href="https://linkedin.com/in/likhith-kongara-049b87212/" target="_blank" rel="noopener" class="contact-btn">🔗 LinkedIn</a>
+                    <a href="https://github.com/KongaraLikhith" target="_blank" rel="noopener" class="contact-btn">🐙 GitHub</a>
+                    <a href="https://medium.com/@likhith0715" target="_blank" rel="noopener" class="contact-btn">📝 Medium</a>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <footer class="site-footer">
+        <div class="container">
+            <p>© 2026 Likhith Kongara — Built with ❤️</p>
+        </div>
+    </footer>
+
+    <script>
+        // ---- SCROLL REVEAL ----
+        const revealElements = document.querySelectorAll('.reveal');
+        const observerOptions = {
+            root: null,
+            rootMargin: '0px 0px -60px 0px',
+            threshold: 0.12,
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach((entry) => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, observerOptions);
+
+        revealElements.forEach((el) => observer.observe(el));
+
+        // ---- ANIMATED COUNTERS ----
+        const statNumbers = document.querySelectorAll('.stat-number[data-count]');
+        let countersAnimated = false;
+
+        function animateCounters() {
+            if (countersAnimated) return;
+            const statsSection = document.querySelector('.stats-grid');
+            if (!statsSection) return;
+            const rect = statsSection.getBoundingClientRect();
+            const windowHeight = window.innerHeight;
+
+            if (rect.top < windowHeight * 0.8 && rect.bottom > 0) {
+                countersAnimated = true;
+                statNumbers.forEach((el) => {
+                    const target = parseInt(el.getAttribute('data-count'), 10);
+                    const duration = 1800;
+                    const startTime = performance.now();
+                    const startVal = 0;
+
+                    function update(now) {
+                        const elapsed = now - startTime;
+                        const progress = Math.min(elapsed / duration, 1);
+                        // Ease-out cubic
+                        const eased = 1 - Math.pow(1 - progress, 3);
+                        const current = Math.round(startVal + (target - startVal) * eased);
+                        el.textContent = current + (target >= 10 ? '+' : '');
+                        if (progress < 1) {
+                            requestAnimationFrame(update);
+                        } else {
+                            el.textContent = target + (target >= 10 ? '+' : '');
+                        }
+                    }
+                    requestAnimationFrame(update);
+                });
+            }
+        }
+
+        window.addEventListener('scroll', animateCounters, { passive: true });
+        window.addEventListener('load', animateCounters);
+        // Also try immediately in case the section is already in view
+        setTimeout(animateCounters, 300);
+    </script>
+
+</body>
+</html>
