@@ -157,7 +157,23 @@ body {
 }
 .hero-contact-row span, .hero-contact-row a { display:inline-flex; align-items:center; gap:7px; text-decoration:none; color:inherit; transition:color 0.3s; }
 .hero-contact-row a:hover { color:var(--cyan); }
+.hero-about {
+  margin-top: 22px;
+  max-width: 520px;
+  padding: 16px 20px;
+  border-left: 2px solid rgba(0, 255, 224, 0.3);
+  background: rgba(0, 255, 224, 0.03);
+  border-radius: 0 6px 6px 0;
+}
 
+.hero-about p {
+  font-size: 0.88rem;
+  color: var(--muted);
+  line-height: 1.75;
+  font-weight: 300;
+  font-family: var(--ff-mono);
+  letter-spacing: 0.01em;
+}
 .hero-deco {
   position: absolute;
   right: 0; top: 50px;
@@ -392,7 +408,9 @@ body {
     <div class="hero-contact-row">
       <span>📍 Austin, TX · Open to Relocation</span>
       <span>📞 +1 716-465-8849</span>
-      <a href="mailto:likhithkongara1715@gmail.com">✉️ likhithkongara1715@gmail.com</a>
+    </div>
+    <div class="hero-about">
+  <p>MS Computer Science grad from University at Buffalo with 1+ years of industry experience in B2B/EDI integration at OpenText. I specialize in building reliable data pipelines, onboarding trading partners, and translating complex technical systems into business value. Currently seeking full-time roles in data engineering, business analysis, or EDI/integration.</p>
     </div>
     <div class="scroll-hint"><span class="scroll-line"></span> scroll to explore</div>
   </section>
