@@ -345,8 +345,19 @@ body {
 /* RESPONSIVE */
 @media (max-width:768px) {
   .container { padding:0 20px; }
-  .hero { padding-right: 0; }
-  .hero-deco { display:none; }
+  .hero {
+  padding-right: 0;
+  display: flex;
+  flex-direction: column-reverse;
+}
+  .hero-deco {
+  position: relative;
+  right: auto;
+  top: auto;
+  width: 160px;
+  height: 160px;
+  margin: 0 0 24px 0;
+}
   .section { padding:50px 0; }
   .timeline-item { grid-template-columns:1fr; grid-template-rows:auto auto auto; }
   .timeline-date { grid-column:1; grid-row:3; text-align:left; width:fit-content; margin-top:8px; }
