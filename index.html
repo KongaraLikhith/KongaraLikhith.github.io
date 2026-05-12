@@ -124,7 +124,7 @@ body {
 @keyframes pulseDot { 0%,100%{box-shadow:0 0 5px rgba(74,222,128,0.5)} 50%{box-shadow:0 0 18px rgba(74,222,128,1)} }
 
 /* HERO */
-.hero { padding-right: clamp(240px, 30vw, 400px); }
+.hero { padding:80px 0 60px; padding-right: clamp(240px, 30vw, 400px); }
 .hero-eyebrow {
   font-family:var(--ff-mono); font-size:0.78rem; letter-spacing:0.26em; color:var(--cyan); text-transform:uppercase; margin-bottom:16px;
   opacity:0; animation:slideRight 0.8s 1.6s cubic-bezier(0.22,0.61,0.36,1) forwards;
@@ -165,7 +165,6 @@ body {
   background: rgba(0, 255, 224, 0.03);
   border-radius: 0 6px 6px 0;
 }
-
 .hero-about p {
   font-size: 0.88rem;
   color: var(--muted);
@@ -181,7 +180,6 @@ body {
   height: clamp(220px, 28vw, 360px);
   animation: fadeIn 1s 2s both;
 }
-
 #hero-img {
   width: 100%;
   height: 100%;
@@ -195,7 +193,6 @@ body {
   filter: grayscale(20%) contrast(1.05);
   transition: filter 0.5s, box-shadow 0.5s, border-color 0.5s;
 }
-
 #hero-img:hover {
   filter: grayscale(0%) contrast(1.1);
   border-color: rgba(0, 255, 224, 0.6);
@@ -204,7 +201,6 @@ body {
     0 0 120px rgba(0, 255, 224, 0.1),
     0 30px 60px rgba(0, 0, 0, 0.6);
 }
-
 .scroll-hint {
   display:flex; align-items:center; gap:10px; margin-top:28px;
   font-family:var(--ff-mono); font-size:0.68rem; letter-spacing:0.18em; color:var(--dim); text-transform:uppercase;
@@ -261,6 +257,100 @@ body {
 .skill-pill:hover::after  { transform:scaleX(1); }
 .ripple { position:absolute; border-radius:50%; background:rgba(0,255,224,0.25); transform:scale(0); animation:rippleAnim 0.6s linear; pointer-events:none; }
 @keyframes rippleAnim { to{transform:scale(4);opacity:0} }
+
+/* PROJECTS */
+.projects-grid {
+  display:grid; grid-template-columns:repeat(2, 1fr); gap:16px;
+}
+.project-card {
+  background:var(--surface); border:1px solid var(--border); border-radius:4px;
+  padding:28px 28px 24px;
+  position:relative; overflow:hidden; cursor:none;
+  display:flex; flex-direction:column; gap:0;
+  transition: border-color 0.4s, background 0.4s, transform 0.5s cubic-bezier(0.34,1.56,0.64,1), box-shadow 0.4s;
+  text-decoration:none;
+}
+.project-card::before {
+  content:''; position:absolute; top:0; left:0; right:0; height:2px;
+  background:linear-gradient(90deg,var(--cyan),var(--orange));
+  transform:scaleX(0); transform-origin:left;
+  transition:transform 0.5s cubic-bezier(0.22,0.61,0.36,1);
+}
+.project-card::after {
+  content:''; position:absolute; bottom:-60px; right:-60px;
+  width:180px; height:180px; border-radius:50%;
+  background:radial-gradient(circle,rgba(0,255,224,0.07) 0%,transparent 70%);
+  opacity:0; transition:opacity 0.5s;
+}
+.project-card:hover { border-color:var(--borderHot); background:var(--surface2); transform:translateY(-6px) scale(1.01); box-shadow:0 24px 52px rgba(0,0,0,0.6),0 0 30px var(--cyanGlow); }
+.project-card:hover::before { transform:scaleX(1); }
+.project-card:hover::after { opacity:1; }
+
+.project-header { display:flex; align-items:flex-start; justify-content:space-between; margin-bottom:12px; }
+.project-name {
+  font-family:var(--ff-display); font-size:1.6rem; letter-spacing:0.04em;
+  color:var(--bright); line-height:1; transition:color 0.3s;
+}
+.project-card:hover .project-name { color:var(--cyan); }
+.project-arrow {
+  font-family:var(--ff-mono); font-size:1rem; color:var(--muted);
+  transform:rotate(-45deg); transition:color 0.3s, transform 0.4s cubic-bezier(0.34,1.56,0.64,1);
+  margin-top:4px;
+}
+.project-card:hover .project-arrow { color:var(--cyan); transform:rotate(0deg); }
+
+.project-tags { display:flex; flex-wrap:wrap; gap:6px; margin-bottom:14px; }
+.project-tag {
+  font-family:var(--ff-mono); font-size:0.62rem; letter-spacing:0.14em; text-transform:uppercase;
+  padding:4px 9px; border-radius:2px; border:1px solid;
+}
+.tag-ai    { color:#00ffe0; border-color:rgba(0,255,224,0.25); background:rgba(0,255,224,0.06); }
+.tag-data  { color:#ff6b35; border-color:rgba(255,107,53,0.25); background:rgba(255,107,53,0.06); }
+.tag-ml    { color:#a78bfa; border-color:rgba(167,139,250,0.25); background:rgba(167,139,250,0.06); }
+.tag-cloud { color:#38bdf8; border-color:rgba(56,189,248,0.25); background:rgba(56,189,248,0.06); }
+.tag-pipeline { color:#4ade80; border-color:rgba(74,222,128,0.25); background:rgba(74,222,128,0.06); }
+
+.project-desc {
+  font-size:0.85rem; color:var(--muted); line-height:1.7; font-weight:300;
+  flex:1; margin-bottom:18px;
+}
+.project-footer {
+  display:flex; align-items:center; justify-content:space-between;
+  padding-top:14px; border-top:1px solid var(--border);
+}
+.project-lang {
+  font-family:var(--ff-mono); font-size:0.68rem; letter-spacing:0.1em; color:var(--dim); text-transform:uppercase;
+  display:flex; align-items:center; gap:6px;
+}
+.lang-dot { width:8px; height:8px; border-radius:50%; }
+.lang-py { background:#3572A5; }
+.lang-html { background:#e34c26; }
+.project-star {
+  font-family:var(--ff-mono); font-size:0.68rem; letter-spacing:0.06em; color:var(--dim);
+  display:flex; align-items:center; gap:4px;
+}
+
+/* FEATURED PROJECT — spans full width */
+.project-card.featured {
+  grid-column: 1 / -1;
+  flex-direction: row; gap:32px; align-items:flex-start;
+}
+.project-card.featured .project-content { flex:1; display:flex; flex-direction:column; }
+.project-card.featured .project-visual {
+  width:220px; flex-shrink:0;
+  background:rgba(0,255,224,0.04); border:1px solid rgba(0,255,224,0.1); border-radius:4px;
+  padding:20px; display:flex; flex-direction:column; gap:10px;
+}
+.project-card.featured .project-name { font-size:2.2rem; }
+.agent-step {
+  font-family:var(--ff-mono); font-size:0.68rem; letter-spacing:0.08em; color:var(--muted);
+  padding:8px 12px; border:1px solid var(--border); border-radius:3px;
+  display:flex; align-items:center; gap:8px;
+  transition:border-color 0.3s, color 0.3s;
+}
+.project-card:hover .agent-step { border-color:rgba(0,255,224,0.2); color:var(--text); }
+.agent-num { color:var(--cyan); font-weight:700; min-width:16px; }
+.agent-arrow { margin-left:auto; color:var(--dim); }
 
 /* TIMELINE */
 .timeline { display:flex; flex-direction:column; gap:12px; }
@@ -359,16 +449,21 @@ body {
 .glitch-wrap.glitching::after  { opacity:1; animation:glitch2 0.25s steps(2) 0.04s forwards; }
 
 /* RESPONSIVE */
+@media (max-width:900px) {
+  .projects-grid { grid-template-columns:1fr; }
+  .project-card.featured { flex-direction:column; }
+  .project-card.featured .project-visual { width:100%; }
+}
 @media (max-width:768px) {
   .container { padding:0 20px; }
-  .hero { padding-right: 0; }
+  .hero { padding-right: 0; padding-top:40px; }
   .hero-deco { display: none; }
   .section { padding:50px 0; }
   .timeline-item { grid-template-columns:1fr; grid-template-rows:auto auto auto; }
   .timeline-date { grid-column:1; grid-row:3; text-align:left; width:fit-content; margin-top:8px; }
   #cursor-dot, #cursor-ring { display:none; }
   body { cursor:auto; }
-  .dash-nav-btn, .contact-btn, .skill-pill { cursor:pointer; }
+  .dash-nav-btn, .contact-btn, .skill-pill, .project-card { cursor:pointer; }
 }
 </style>
 </head>
@@ -397,7 +492,7 @@ body {
 
   <section class="hero">
     <div class="hero-deco">
-  <img src="port_imagev1.jpg" alt="Likhith Kongara" id="hero-img">
+      <img src="port_imagev1.jpg" alt="Likhith Kongara" id="hero-img">
     </div>
     <p class="hero-eyebrow">// B2B · Data · Cloud · Austin, TX</p>
     <h1>
@@ -411,13 +506,14 @@ body {
       <a href="mailto:likhithkongara1715@gmail.com">✉️ likhithkongara1715@gmail.com</a>
     </div>
     <div class="hero-about">
-  <p>MS Computer Science grad from University at Buffalo with 1+ years of industry experience in B2B/EDI integration at OpenText. I specialize in building reliable data pipelines, onboarding trading partners, and translating complex technical systems into business value. Currently seeking full-time roles in data engineering, business analysis, or EDI/integration.</p>
+      <p>MS Computer Science grad from University at Buffalo with 1+ years of industry experience in B2B/EDI integration at OpenText. I specialize in building reliable data pipelines, onboarding trading partners, and translating complex technical systems into business value. Currently seeking full-time roles in data engineering, business analysis, or EDI/integration.</p>
     </div>
     <div class="scroll-hint"><span class="scroll-line"></span> scroll to explore</div>
   </section>
 
   <nav class="dashboard-nav">
     <a href="#skills" class="dash-nav-btn">⚙ skills</a>
+    <a href="#projects" class="dash-nav-btn">◆ projects</a>
     <a href="#experience" class="dash-nav-btn">▶ experience</a>
     <a href="#education" class="dash-nav-btn">◈ education</a>
     <a href="#contact" class="dash-nav-btn">⬡ contact</a>
@@ -459,8 +555,102 @@ body {
     </div>
   </section>
 
+  <!-- PROJECTS -->
+  <section class="section reveal-section" id="projects">
+    <p class="section-label">02 · projects</p>
+    <h2 class="section-title">Selected Work</h2>
+    <p class="section-sub">Things I've built — from AI pipelines to data platforms</p>
+
+    <div class="projects-grid">
+
+      <!-- FEATURED: SkillVector -->
+      <a class="project-card featured" href="https://github.com/KongaraLikhith/SkillVector" target="_blank" rel="noopener">
+        <div class="project-content">
+          <div class="project-header">
+            <span class="project-name">SkillBridge AI</span>
+            <span class="project-arrow">↗</span>
+          </div>
+          <div class="project-tags">
+            <span class="project-tag tag-ai">AI Agents</span>
+            <span class="project-tag tag-ml">TF-IDF · ML</span>
+            <span class="project-tag tag-data">PostgreSQL</span>
+            <span class="project-tag tag-cloud">FastAPI · Docker</span>
+          </div>
+          <p class="project-desc">Multi-agent workforce empowerment engine. Scans job-market demand, identifies skill gaps using cosine similarity on TF-IDF vectors, and generates SQL-persistent learning roadmaps — all orchestrated through a three-stage async pipeline with zero external API dependencies.</p>
+          <div class="project-footer">
+            <span class="project-lang"><span class="lang-dot lang-py"></span>Python</span>
+            <span class="project-star">★ Hackathon build</span>
+          </div>
+        </div>
+        <div class="project-visual">
+          <div class="agent-step"><span class="agent-num">01</span> Market Intel Agent <span class="agent-arrow">→</span></div>
+          <div class="agent-step"><span class="agent-num">02</span> Skill-Gap Agent <span class="agent-arrow">→</span></div>
+          <div class="agent-step"><span class="agent-num">03</span> Path Architect <span class="agent-arrow">→</span></div>
+          <div style="margin-top:10px;padding-top:10px;border-top:1px solid var(--border);font-family:var(--ff-mono);font-size:0.62rem;letter-spacing:0.1em;color:var(--dim);">
+            TF-IDF · cosine similarity<br>asyncpg · SQLAlchemy 2.0<br>scikit-learn · Alembic
+          </div>
+        </div>
+      </a>
+
+      <!-- austin-eats -->
+      <a class="project-card" href="https://github.com/KongaraLikhith/austin-eats" target="_blank" rel="noopener">
+        <div class="project-header">
+          <span class="project-name">Austin Eats</span>
+          <span class="project-arrow">↗</span>
+        </div>
+        <div class="project-tags">
+          <span class="project-tag tag-ai">Gemini API</span>
+          <span class="project-tag tag-ml">Vector Search</span>
+          <span class="project-tag tag-cloud">AlloyDB · Flask</span>
+        </div>
+        <p class="project-desc">AI-powered restaurant discovery platform with custom NL-to-SQL logic via Gemini and semantic vector search on AlloyDB AI. Users ask in plain English — the system translates, queries, and surfaces localized Austin dining results.</p>
+        <div class="project-footer">
+          <span class="project-lang"><span class="lang-dot lang-html"></span>Python · HTML</span>
+          <span class="project-star">★★ 2 stars</span>
+        </div>
+      </a>
+
+      <!-- FareSense -->
+      <a class="project-card" href="https://github.com/KongaraLikhith/FareSense" target="_blank" rel="noopener">
+        <div class="project-header">
+          <span class="project-name">FareSense</span>
+          <span class="project-arrow">↗</span>
+        </div>
+        <div class="project-tags">
+          <span class="project-tag tag-pipeline">Bronze → Gold</span>
+          <span class="project-tag tag-data">Data Pipeline</span>
+          <span class="project-tag tag-cloud">Taxi Analytics</span>
+        </div>
+        <p class="project-desc">Structured medallion pipeline processing raw NYC taxi trip data through bronze → silver → gold layers. Handles cleaning, transformations, and aggregations to surface actionable insights on fares, routes, and demand patterns.</p>
+        <div class="project-footer">
+          <span class="project-lang"><span class="lang-dot lang-py"></span>Python</span>
+          <span class="project-star">End-to-end ETL</span>
+        </div>
+      </a>
+
+      <!-- WebScrapy_Analyze -->
+      <a class="project-card" href="https://github.com/KongaraLikhith/WebScrapy_Analyze" target="_blank" rel="noopener">
+        <div class="project-header">
+          <span class="project-name">RemoteOK Intel</span>
+          <span class="project-arrow">↗</span>
+        </div>
+        <div class="project-tags">
+          <span class="project-tag tag-data">Web Scraping</span>
+          <span class="project-tag tag-pipeline">SQLite · CSV</span>
+          <span class="project-tag tag-ml">Tableau</span>
+        </div>
+        <p class="project-desc">Automated pipeline scraping RemoteOK job postings into SQLite and CSV, with a Tableau dashboard visualizing remote tech market trends, top in-demand skills, and hiring company patterns across the global job market.</p>
+        <div class="project-footer">
+          <span class="project-lang"><span class="lang-dot lang-py"></span>Python</span>
+          <span class="project-star">Tableau dashboard</span>
+        </div>
+      </a>
+
+    </div>
+  </section>
+
   <section class="section reveal-section" id="experience">
-    <p class="section-label">02 · experience</p>
+    <p class="section-label">03 · experience</p>
     <h2 class="section-title">Experience</h2>
     <p class="section-sub">Where I've contributed and grown</p>
     <div class="timeline">
@@ -488,7 +678,7 @@ body {
   </section>
 
   <section class="section reveal-section" id="education">
-    <p class="section-label">03 · education</p>
+    <p class="section-label">04 · education</p>
     <h2 class="section-title">Education</h2>
     <p class="section-sub">Academic foundations</p>
     <div class="edu-grid">
@@ -508,7 +698,7 @@ body {
   </section>
 
   <section class="section reveal-section" id="contact">
-    <p class="section-label">04 · contact</p>
+    <p class="section-label">05 · contact</p>
     <h2 class="section-title">Let's Talk</h2>
     <div class="contact-card">
       <p>Open to interesting conversations and new opportunities.</p>
@@ -544,7 +734,7 @@ window.addEventListener('load', () => {
   }, 1500);
 });
 
-// CURSOR — dot snaps, ring lags
+// CURSOR
 const dot  = document.getElementById('cursor-dot');
 const ring = document.getElementById('cursor-ring');
 let mx=0, my=0, rx=0, ry=0;
@@ -555,8 +745,7 @@ document.addEventListener('mousemove', e => { mx=e.clientX; my=e.clientY; });
   ring.style.left = rx+'px'; ring.style.top = ry+'px';
   requestAnimationFrame(animCursor);
 })();
-// ring grows on hover targets
-document.querySelectorAll('a,.skill-pill,.timeline-item,.edu-card,.dash-nav-btn,.contact-btn').forEach(el => {
+document.querySelectorAll('a,.skill-pill,.timeline-item,.edu-card,.dash-nav-btn,.contact-btn,.project-card').forEach(el => {
   el.addEventListener('mouseenter', () => { ring.style.width='62px'; ring.style.height='62px'; ring.style.borderColor='var(--cyan)'; });
   el.addEventListener('mouseleave', () => { ring.style.width='40px'; ring.style.height='40px'; ring.style.borderColor='rgba(0,255,224,0.45)'; });
 });
@@ -583,7 +772,6 @@ const particles = Array.from({length:120}, ()=>new Particle());
 (function animParticles() {
   ctx.clearRect(0,0,W,H);
   particles.forEach(p=>{ p.update(); p.draw(); });
-  // connections
   for(let i=0;i<particles.length;i++) for(let j=i+1;j<particles.length;j++) {
     const dx=particles[i].x-particles[j].x, dy=particles[i].y-particles[j].y, d=Math.sqrt(dx*dx+dy*dy);
     if(d<100){ ctx.beginPath(); ctx.moveTo(particles[i].x,particles[i].y); ctx.lineTo(particles[j].x,particles[j].y); ctx.strokeStyle=`rgba(0,255,224,${0.06*(1-d/100)})`; ctx.lineWidth=0.5; ctx.stroke(); }
@@ -621,6 +809,16 @@ document.querySelectorAll('.edu-card').forEach(card => {
     const rect=card.getBoundingClientRect();
     const x=(e.clientX-rect.left)/rect.width-0.5, y=(e.clientY-rect.top)/rect.height-0.5;
     card.style.transform=`translateY(-8px) scale(1.02) rotateX(${-y*6}deg) rotateY(${x*6}deg)`;
+  });
+  card.addEventListener('mouseleave', ()=>{ card.style.transform=''; });
+});
+
+// PROJECT CARD TILT
+document.querySelectorAll('.project-card').forEach(card => {
+  card.addEventListener('mousemove', e => {
+    const rect=card.getBoundingClientRect();
+    const x=(e.clientX-rect.left)/rect.width-0.5, y=(e.clientY-rect.top)/rect.height-0.5;
+    card.style.transform=`translateY(-6px) scale(1.01) rotateX(${-y*3}deg) rotateY(${x*4}deg)`;
   });
   card.addEventListener('mouseleave', ()=>{ card.style.transform=''; });
 });
