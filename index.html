@@ -36,7 +36,6 @@ body {
   background: var(--bg);
   color: var(--text);
   overflow-x: hidden;
-  cursor: none;
   -webkit-font-smoothing: antialiased;
 }
 
@@ -58,17 +57,7 @@ body {
 .loader-sub { font-family:var(--ff-mono); font-size:0.72rem; letter-spacing:0.22em; color:var(--muted); text-transform:uppercase; animation:fadeIn 0.5s 0.4s both; }
 @keyframes fadeIn { from{opacity:0} to{opacity:1} }
 
-/* CURSOR */
-#cursor-dot {
-  position:fixed; width:8px; height:8px; background:var(--cyan); border-radius:50%;
-  pointer-events:none; z-index:9997; transform:translate(-50%,-50%);
-  box-shadow:0 0 14px var(--cyan); mix-blend-mode:screen;
-}
-#cursor-ring {
-  position:fixed; width:40px; height:40px; border:1.5px solid rgba(0,255,224,0.45); border-radius:50%;
-  pointer-events:none; z-index:9996; transform:translate(-50%,-50%);
-  transition:width 0.3s, height 0.3s, border-color 0.3s; mix-blend-mode:screen;
-}
+
 
 /* PARTICLE CANVAS */
 #particle-canvas { position:fixed; inset:0; z-index:0; pointer-events:none; opacity:0.5; }
@@ -461,8 +450,6 @@ body {
   .section { padding:50px 0; }
   .timeline-item { grid-template-columns:1fr; grid-template-rows:auto auto auto; }
   .timeline-date { grid-column:1; grid-row:3; text-align:left; width:fit-content; margin-top:8px; }
-  #cursor-dot, #cursor-ring { display:none; }
-  body { cursor:auto; }
   .dash-nav-btn, .contact-btn, .skill-pill, .project-card { cursor:pointer; }
 }
 </style>
@@ -475,8 +462,6 @@ body {
   <div class="loader-bar-wrap"><div class="loader-bar"></div></div>
 </div>
 
-<div id="cursor-dot"></div>
-<div id="cursor-ring"></div>
 <canvas id="particle-canvas"></canvas>
 <div class="ambient"></div>
 <div class="scanlines"></div>
@@ -512,82 +497,46 @@ body {
   </section>
 
   <nav class="dashboard-nav">
-    <a href="#skills" class="dash-nav-btn">⚙ skills</a>
     <a href="#projects" class="dash-nav-btn">◆ projects</a>
     <a href="#experience" class="dash-nav-btn">▶ experience</a>
     <a href="#education" class="dash-nav-btn">◈ education</a>
     <a href="#contact" class="dash-nav-btn">⬡ contact</a>
   </nav>
 
-  <section class="section reveal-section" id="skills">
-    <p class="section-label">01 · skills</p>
-    <h2 class="section-title">Technical Skills</h2>
-    <p class="section-sub">Tools, platforms, and technologies I work with</p>
-    <div class="skill-group">
-      <p class="skill-group-label">EDI Standards</p>
-      <div class="skill-pills">
-        <span class="skill-pill">ANSI X12</span><span class="skill-pill">EDIFACT</span><span class="skill-pill">XML</span><span class="skill-pill">JSON</span><span class="skill-pill">Flat Files</span>
-      </div>
-    </div>
-    <div class="skill-group">
-      <p class="skill-group-label">ERP & B2B Tools</p>
-      <div class="skill-pills">
-        <span class="skill-pill">SAP IDocs (WE20, WE19, BD87)</span><span class="skill-pill">SAP ERP</span><span class="skill-pill">SAP EWM</span><span class="skill-pill">OpenText Contivo</span><span class="skill-pill">BizMapper</span><span class="skill-pill">Sterling B2B</span>
-      </div>
-    </div>
-    <div class="skill-group">
-      <p class="skill-group-label">Partner Onboarding & Testing</p>
-      <div class="skill-pills">
-        <span class="skill-pill">End-to-End Technical Onboarding</span><span class="skill-pill">AS2 / SFTP / VAN / FTP</span><span class="skill-pill">Connectivity Testing</span><span class="skill-pill">UAT</span><span class="skill-pill">Regression Testing</span>
-      </div>
-    </div>
-    <div class="skill-group">
-      <p class="skill-group-label">Data, Analytics & Visualization</p>
-      <div class="skill-pills">
-        <span class="skill-pill">Python</span><span class="skill-pill">SQL (PostgreSQL, MySQL)</span><span class="skill-pill">Pandas</span><span class="skill-pill">NumPy</span><span class="skill-pill">Scikit-learn</span><span class="skill-pill">ML Models</span><span class="skill-pill">Streamlit</span><span class="skill-pill">Power BI</span><span class="skill-pill">Google Looker Studio</span><span class="skill-pill">Snowflake</span><span class="skill-pill">Airflow</span><span class="skill-pill">Advanced Excel</span>
-      </div>
-    </div>
-    <div class="skill-group">
-      <p class="skill-group-label">Cloud, AI & Dev Tools</p>
-      <div class="skill-pills">
-        <span class="skill-pill">AWS (Lambda, S3, EC2, RDS)</span><span class="skill-pill">GCP</span><span class="skill-pill">Microsoft Fabric</span><span class="skill-pill">AI Agents</span><span class="skill-pill">REST APIs</span><span class="skill-pill">FastAPI</span><span class="skill-pill">Docker</span><span class="skill-pill">Git / GitHub</span><span class="skill-pill">Postman</span><span class="skill-pill">Microsoft Office</span>
-      </div>
-    </div>
-  </section>
-
   <!-- PROJECTS -->
   <section class="section reveal-section" id="projects">
-    <p class="section-label">02 · projects</p>
+    <p class="section-label">01 · projects</p>
     <h2 class="section-title">Selected Work</h2>
     <p class="section-sub">Things I've built — from AI pipelines to data platforms</p>
 
     <div class="projects-grid">
 
-      <!-- FEATURED: SkillVector -->
-      <a class="project-card featured" href="https://github.com/KongaraLikhith/SkillVector" target="_blank" rel="noopener">
+      <!-- FEATURED: CrisisOps AI -->
+      <a class="project-card featured" href="https://crisis-ops-ai-253590687342.us-central1.run.app" target="_blank" rel="noopener">
         <div class="project-content">
           <div class="project-header">
-            <span class="project-name">SkillBridge AI</span>
+            <span class="project-name">CrisisOps AI</span>
             <span class="project-arrow">↗</span>
           </div>
           <div class="project-tags">
-            <span class="project-tag tag-ai">AI Agents</span>
-            <span class="project-tag tag-ml">TF-IDF · ML</span>
-            <span class="project-tag tag-data">PostgreSQL</span>
-            <span class="project-tag tag-cloud">FastAPI · Docker</span>
+            <span class="project-tag tag-ai">Gemini · ADK</span>
+            <span class="project-tag tag-ml">Multi-Agent</span>
+            <span class="project-tag tag-cloud">Cloud Run · GCP</span>
+            <span class="project-tag tag-pipeline">React · Flask</span>
           </div>
-          <p class="project-desc">Multi-agent workforce empowerment engine. Scans job-market demand, identifies skill gaps using cosine similarity on TF-IDF vectors, and generates SQL-persistent learning roadmaps — all orchestrated through a three-stage async pipeline with zero external API dependencies.</p>
+          <p class="project-desc">Autonomous incident response platform that replaces manual on-call workflows. Commander Agent orchestrates Triage, Communication, and Documentation agents — parsing alerts, finding root causes, firing Slack notifications, and generating post-mortems without human intervention. Built at the Google GenAI Hackathon. Live on Cloud Run.</p>
           <div class="project-footer">
-            <span class="project-lang"><span class="lang-dot lang-py"></span>Python</span>
-            <span class="project-star">★ Hackathon build</span>
+            <span class="project-lang"><span class="lang-dot lang-py"></span>Python · React</span>
+            <span class="project-star">★ Google GenAI Hackathon</span>
           </div>
         </div>
         <div class="project-visual">
-          <div class="agent-step"><span class="agent-num">01</span> Market Intel Agent <span class="agent-arrow">→</span></div>
-          <div class="agent-step"><span class="agent-num">02</span> Skill-Gap Agent <span class="agent-arrow">→</span></div>
-          <div class="agent-step"><span class="agent-num">03</span> Path Architect <span class="agent-arrow">→</span></div>
+          <div class="agent-step"><span class="agent-num">01</span> Commander Agent <span class="agent-arrow">→</span></div>
+          <div class="agent-step"><span class="agent-num">02</span> Triage Agent <span class="agent-arrow">→</span></div>
+          <div class="agent-step"><span class="agent-num">03</span> Communication Agent <span class="agent-arrow">→</span></div>
+          <div class="agent-step"><span class="agent-num">04</span> Documentation Agent <span class="agent-arrow">→</span></div>
           <div style="margin-top:10px;padding-top:10px;border-top:1px solid var(--border);font-family:var(--ff-mono);font-size:0.62rem;letter-spacing:0.1em;color:var(--dim);">
-            TF-IDF · cosine similarity<br>asyncpg · SQLAlchemy 2.0<br>scikit-learn · Alembic
+            Gemini · Google ADK<br>Cloud Run · Cloud SQL<br>Slack integration · PostgreSQL
           </div>
         </div>
       </a>
@@ -650,7 +599,7 @@ body {
   </section>
 
   <section class="section reveal-section" id="experience">
-    <p class="section-label">03 · experience</p>
+    <p class="section-label">02 · experience</p>
     <h2 class="section-title">Experience</h2>
     <p class="section-sub">Where I've contributed and grown</p>
     <div class="timeline">
@@ -678,7 +627,7 @@ body {
   </section>
 
   <section class="section reveal-section" id="education">
-    <p class="section-label">04 · education</p>
+    <p class="section-label">03 · education</p>
     <h2 class="section-title">Education</h2>
     <p class="section-sub">Academic foundations</p>
     <div class="edu-grid">
@@ -698,7 +647,7 @@ body {
   </section>
 
   <section class="section reveal-section" id="contact">
-    <p class="section-label">05 · contact</p>
+    <p class="section-label">04 · contact</p>
     <h2 class="section-title">Let's Talk</h2>
     <div class="contact-card">
       <p>Open to interesting conversations and new opportunities.</p>
@@ -732,22 +681,6 @@ window.addEventListener('load', () => {
     loaderEl.classList.add('out');
     setTimeout(() => loaderEl.remove(), 800);
   }, 1500);
-});
-
-// CURSOR
-const dot  = document.getElementById('cursor-dot');
-const ring = document.getElementById('cursor-ring');
-let mx=0, my=0, rx=0, ry=0;
-document.addEventListener('mousemove', e => { mx=e.clientX; my=e.clientY; });
-(function animCursor() {
-  dot.style.left = mx+'px'; dot.style.top = my+'px';
-  rx += (mx-rx)*0.12; ry += (my-ry)*0.12;
-  ring.style.left = rx+'px'; ring.style.top = ry+'px';
-  requestAnimationFrame(animCursor);
-})();
-document.querySelectorAll('a,.skill-pill,.timeline-item,.edu-card,.dash-nav-btn,.contact-btn,.project-card').forEach(el => {
-  el.addEventListener('mouseenter', () => { ring.style.width='62px'; ring.style.height='62px'; ring.style.borderColor='var(--cyan)'; });
-  el.addEventListener('mouseleave', () => { ring.style.width='40px'; ring.style.height='40px'; ring.style.borderColor='rgba(0,255,224,0.45)'; });
 });
 
 // PARTICLE CANVAS
